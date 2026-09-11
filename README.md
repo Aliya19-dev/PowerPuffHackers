@@ -30,7 +30,7 @@ Our goal is to build a solution that is:
 This repository serves as our development and submission workspace for **BitNBuild 2026**.
 
 **Problem Statement:**
-`To be updated after official problem statement release.`
+`Multiple intermediaries reduce farmers earnings and increase consumer prices.`
 
 ---
 
@@ -38,7 +38,7 @@ This repository serves as our development and submission workspace for **BitNBui
 
 ### The Idea
 
-`Briefly describe your solution here after the problem statement is released.`
+`Our proposed solution is a direct farm-to-consumer digital marketplace that connects agricultural producers directly with end consumers, local retailers, and bulk buyers. By integrating automated price discovery, contract management, and integrated logistics, the platform eliminates unnecessary intermediaries. This ensures farmers receive fair, transparent pricing for their produce while consumers and business buyers get access to fresh commodities at lower costs.`
 
 Our proposed solution aims to address the identified problem by combining **technology, automation, intelligent decision-making, and a user-friendly interface**.
 
@@ -61,7 +61,11 @@ Our approach focuses on bringing the relevant capabilities together into a **sin
 
 ## ✨ Key Features
 
-> Features will be finalized according to the official BitNBuild 2026 problem statement.
+> Direct Marketplace & Bidding: Allows farmers to list harvest yields, set reserve prices, and receive direct purchase offers or participating bids from consumers and commercial buyers.
+> Smart Dynamic Pricing: Analyzes local market trends, supply-demand metrics, and seasonal data to provide real-time price suggestions, protecting farmers from predatory under-pricing.
+> Integrated Logistics & Delivery Hub: Connects buyers and farmers with third-party local logistics partners to streamline harvest pickup and delivery, tracking orders end-to-end.
+> Escrow Payments & Contract Security: Secures payments in escrow upon order placement and releases funds immediately upon verified delivery, eliminating buyer payment delays.
+> AI Quality Assessment: Enables farmers to upload images of produce for instant AI-based quality grading, establishing standard quality tiers for buyer trust.
 
 ### Current / Planned Features
 

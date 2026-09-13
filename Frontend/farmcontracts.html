@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AGRI-CONNECT - Dashboard</title>
+  <title>AGRI-CONNECT - Contracts Management</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
@@ -16,7 +16,7 @@
     <!-- Left Navigation Sidebar -->
     <aside class="w-72 bg-white/95 backdrop-blur-md border-r border-emerald-900/10 p-6 flex flex-col justify-between rounded-r-3xl shadow-sm z-10 flex-shrink-0">
       <div>
-        <!-- Brand Title with Previous Light Blue Color -->
+        <!-- Brand Title -->
         <div class="px-2 py-3 mb-6">
           <h1 class="text-xl font-bold tracking-widest text-[#5C94E5] uppercase flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-emerald-600"></span> DASHBOARD
@@ -25,7 +25,7 @@
 
         <!-- Sidebar Navigation -->
         <nav id="sidebarNav" class="space-y-2">
-          <!-- Navigation buttons render dynamically -->
+          <!-- Rendered dynamically -->
         </nav>
       </div>
 
@@ -33,7 +33,7 @@
       <div class="pt-4 border-t border-gray-100">
         <a 
           id="logoutBtn"
-          href="login.html" 
+          href="log_in.html" 
           class="w-full flex items-center gap-3.5 px-5 py-3.5 rounded-2xl text-sm font-bold tracking-wider text-emerald-700 hover:bg-emerald-50 transition-all uppercase"
         >
           <i data-lucide="log-out" class="w-5 h-5"></i>
@@ -46,14 +46,18 @@
     <main class="flex-1 p-8 overflow-y-auto">
       
       <!-- Top Action Bar -->
-     <header class="flex justify-between items-center mb-6">
+      <header class="flex justify-between items-center mb-6">
         <div class="w-full h-[90px] bg-white rounded-2xl shadow-md text-gray-800 p-4 flex items-center justify-between border border-gray-100">
           <h2 id="roleHeader" class="text-sm font-extrabold text-[#1F2937] tracking-wider uppercase">
-            FARMER <span class="text-[#659F68]">DASHBOARD</span> 
+            FARMERS <span class="text-[#659F68]">MARKET</span> 
           </h2>
 
           <!-- Right side items: Badge + Avatar -->
           <div class="flex items-center gap-3">
+            <button onclick="openRequestModal()" class="hidden md:flex items-center gap-2 bg-[#5C94E5] hover:bg-blue-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm">
+              <i data-lucide="file-plus" class="w-4 h-4"></i>
+              <span>REQUEST CONTRACT</span>
+            </button>
             <span class="px-3 py-1 bg-[#FDF0C3] text-[#8D6B00] font-bold text-xs tracking-wider rounded-full shadow-sm uppercase border border-amber-200">
               LIVE
             </span>
@@ -65,19 +69,261 @@
         </div>
       </header>
 
-      <!-- Dynamic Screen Container -->
+      <!-- Main Screen Content: Contracts Section -->
       <div id="screenContainer">
-        <!-- Rendered via JavaScript -->
+        
+        <!-- Metric Cards Bar -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center">
+              <i data-lucide="mail-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 font-medium">Contract Invites</p>
+              <h4 class="text-xl font-black text-gray-900">3 Pending</h4>
+            </div>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center">
+              <i data-lucide="file-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 font-medium">Active Contracts</p>
+              <h4 class="text-xl font-black text-gray-900">2 Ongoing</h4>
+            </div>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 font-medium">Escrow Committed</p>
+              <h4 class="text-xl font-black text-gray-900">₹4,50,000</h4>
+            </div>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 border border-purple-200 flex items-center justify-center">
+              <i data-lucide="history" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 font-medium">Completed</p>
+              <h4 class="text-xl font-black text-gray-900">12 Contracts</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1: Buyer Invites & Direct Proposals -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-4">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="inbox" class="w-5 h-5 text-[#5C94E5]"></i> Incoming Contractor Invites & Proposals
+              </h3>
+              <p class="text-xs text-gray-500">Review, accept, or negotiate pre-harvest contract agreements from buyers.</p>
+            </div>
+            <span class="text-xs bg-amber-100 text-amber-800 font-semibold px-2.5 py-1 rounded-lg">Action Required</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Invite Card 1 -->
+            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-3 py-1 rounded-full border border-blue-100">Corporate Buyer</span>
+                  <span class="text-xs text-gray-400">2 days ago</span>
+                </div>
+                <h4 class="font-extrabold text-gray-900 text-base mb-1">Reliance Fresh Retail</h4>
+                <p class="text-xs font-semibold text-[#659F68] mb-3">Organic Wheat (Grade A)</p>
+                
+                <div class="bg-gray-50 rounded-2xl p-4 space-y-2 mb-4 text-xs">
+                  <div class="flex justify-between"><span class="text-gray-500">Target Quantity:</span> <span class="font-bold text-gray-800">50 Quintals</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Agreed Base Price:</span> <span class="font-bold text-emerald-700">₹2,400 / Quintal</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Harvest Period:</span> <span class="font-bold text-gray-800">Nov 2026</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Escrow Security:</span> <span class="font-bold text-emerald-600">100% Guaranteed</span></div>
+                </div>
+              </div>
+
+              <div class="flex gap-2">
+                <button onclick="alert('Contract proposal accepted! Sent to draft review.')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl transition-all">Accept</button>
+                <button onclick="alert('Negotiation request sent to Buyer.')" class="flex-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold py-3 rounded-xl transition-all">Counter</button>
+              </div>
+            </div>
+
+            <!-- Invite Card 2 -->
+            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-[11px] font-bold uppercase tracking-wider bg-purple-50 text-purple-600 px-3 py-1 rounded-full border border-purple-100">Food Processor</span>
+                  <span class="text-xs text-gray-400">5 hours ago</span>
+                </div>
+                <h4 class="font-extrabold text-gray-900 text-base mb-1">AgroFoods Processing Ltd.</h4>
+                <p class="text-xs font-semibold text-[#659F68] mb-3">Red Tomatoes (Processing Grade)</p>
+                
+                <div class="bg-gray-50 rounded-2xl p-4 space-y-2 mb-4 text-xs">
+                  <div class="flex justify-between"><span class="text-gray-500">Target Quantity:</span> <span class="font-bold text-gray-800">120 Quintals</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Agreed Base Price:</span> <span class="font-bold text-emerald-700">₹1,850 / Quintal</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Harvest Period:</span> <span class="font-bold text-gray-800">Oct 2026</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Escrow Security:</span> <span class="font-bold text-emerald-600">50% Advance Escrow</span></div>
+                </div>
+              </div>
+
+              <div class="flex gap-2">
+                <button onclick="alert('Contract proposal accepted! Sent to draft review.')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl transition-all">Accept</button>
+                <button onclick="alert('Negotiation request sent to Buyer.')" class="flex-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold py-3 rounded-xl transition-all">Counter</button>
+              </div>
+            </div>
+
+            <!-- Invite Card 3 -->
+            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-100">Export House</span>
+                  <span class="text-xs text-gray-400">1 day ago</span>
+                </div>
+                <h4 class="font-extrabold text-gray-900 text-base mb-1">Global Harvest Exports</h4>
+                <p class="text-xs font-semibold text-[#659F68] mb-3">Basmati Rice (Export Quality)</p>
+                
+                <div class="bg-gray-50 rounded-2xl p-4 space-y-2 mb-4 text-xs">
+                  <div class="flex justify-between"><span class="text-gray-500">Target Quantity:</span> <span class="font-bold text-gray-800">200 Quintals</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Agreed Base Price:</span> <span class="font-bold text-emerald-700">₹4,200 / Quintal</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Harvest Period:</span> <span class="font-bold text-gray-800">Dec 2026</span></div>
+                  <div class="flex justify-between"><span class="text-gray-500">Escrow Security:</span> <span class="font-bold text-emerald-600">100% Guaranteed</span></div>
+                </div>
+              </div>
+
+              <div class="flex gap-2">
+                <button onclick="alert('Contract proposal accepted! Sent to draft review.')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl transition-all">Accept</button>
+                <button onclick="alert('Negotiation request sent to Buyer.')" class="flex-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold py-3 rounded-xl transition-all">Counter</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section 2: Active Signed Contracts Table -->
+        <div class="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm mb-8">
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="file-text" class="w-5 h-5 text-emerald-600"></i> Active & Legally Signed Contracts
+              </h3>
+              <p class="text-xs text-gray-500">Track milestones, delivery schedules, and locked escrow payments.</p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-gray-600">
+              <thead class="bg-emerald-50/50 uppercase text-[11px] font-bold text-emerald-900 border-b border-emerald-100">
+                <tr>
+                  <th class="p-4 rounded-l-xl">Contract ID</th>
+                  <th class="p-4">Contractor / Buyer</th>
+                  <th class="p-4">Produce Spec</th>
+                  <th class="p-4">Total Contract Value</th>
+                  <th class="p-4">Escrow Locked</th>
+                  <th class="p-4">Delivery Due</th>
+                  <th class="p-4 rounded-r-xl text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 font-medium">
+                
+                <tr class="hover:bg-gray-50/80 transition-colors">
+                  <td class="p-4 font-bold text-[#5C94E5]">#CTR-8892</td>
+                  <td class="p-4 font-semibold text-gray-900">GreenEarth Organics</td>
+                  <td class="p-4">Organic Soybean (80 Qtl)</td>
+                  <td class="p-4 font-bold text-gray-900">₹3,20,000</td>
+                  <td class="p-4 text-emerald-600 font-bold">₹3,20,000 (100%)</td>
+                  <td class="p-4">15 Oct 2026</td>
+                  <td class="p-4 text-center">
+                    <span class="px-3 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full text-[10px] tracking-wider uppercase">In Cultivation</span>
+                  </td>
+                </tr>
+
+                <tr class="hover:bg-gray-50/80 transition-colors">
+                  <td class="p-4 font-bold text-[#5C94E5]">#CTR-7410</td>
+                  <td class="p-4 font-semibold text-gray-900">Heritage Potato Chips Ltd.</td>
+                  <td class="p-4">Chip-Grade Potatoes (50 Qtl)</td>
+                  <td class="p-4 font-bold text-gray-900">₹1,30,000</td>
+                  <td class="p-4 text-emerald-600 font-bold">₹65,000 (50%)</td>
+                  <td class="p-4">28 Nov 2026</td>
+                  <td class="p-4 text-center">
+                    <span class="px-3 py-1 bg-amber-100 text-amber-800 font-bold rounded-full text-[10px] tracking-wider uppercase">Milestone 1 Met</span>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section 3: Open Market Contract Requests (Farmer Initiated) -->
+        <div class="bg-[#FDF7EE] rounded-3xl p-6 border border-amber-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-amber-200/60 text-amber-900 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="handshake" class="w-7 h-7"></i>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-gray-900 text-base">Want to Lock-in Prices Before Planting?</h4>
+              <p class="text-xs text-gray-600 mt-0.5">Publish your future crop availability to get custom corporate contract offers direct to your dashboard.</p>
+            </div>
+          </div>
+          <button onclick="openRequestModal()" class="w-full md:w-auto bg-[#5C94E5] hover:bg-blue-600 text-white font-bold text-xs px-6 py-3.5 rounded-2xl transition-all shadow-sm flex-shrink-0 uppercase tracking-wider">
+            Post Contract Proposal
+          </button>
+        </div>
+
       </div>
 
     </main>
 
   </div>
 
+  <!-- Modal Component: Create Contract Request -->
+  <div id="contractModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-3xl p-6 w-full max-w-lg shadow-xl border border-gray-100">
+      <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
+        <h3 class="text-base font-bold text-gray-900 uppercase">Request Custom Contract</h3>
+        <button onclick="closeRequestModal()" class="text-gray-400 hover:text-gray-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Crop Type</label>
+          <input type="text" placeholder="e.g. Organic Cotton, Wheat" required class="w-full text-xs px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#5C94E5]">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Estimated Quantity (Quintals)</label>
+            <input type="number" placeholder="100" required class="w-full text-xs px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#5C94E5]">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Target Price (₹/Quintal)</label>
+            <input type="number" placeholder="2500" required class="w-full text-xs px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#5C94E5]">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Expected Harvest Date</label>
+          <input type="date" required class="w-full text-xs px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#5C94E5]">
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeRequestModal()" class="px-5 py-3 rounded-xl bg-gray-100 text-gray-600 text-xs font-bold uppercase">Cancel</button>
+          <button type="submit" class="px-5 py-3 rounded-xl bg-emerald-600 text-white text-xs font-bold uppercase hover:bg-emerald-700">Submit Proposal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // Navigation items with custom href links (Internal HTML pages or External URLs)
     const navItems = [
-      { id: 'dashboard', label: 'DASHBOARD', icon: 'layout-dashboard', href: '#' },
+      { id: 'dashboard', label: 'DASHBOARD', icon: 'layout-dashboard', href: 'farmdashboard.html' },
       { id: 'add-produce', label: 'ADD PRODUCE', icon: 'plus-circle', href: 'farmadd-produce.html' },
       { id: 'my-produce', label: 'MY PRODUCE', icon: 'package', href: 'farmmy-produce.html' },
       { id: 'orders', label: 'ORDERS', icon: 'clipboard-list', href: 'farmorders.html' },
@@ -87,15 +333,9 @@
       { id: 'profile', label: 'PROFILE', icon: 'user', href: 'farmprofile.html' },
     ];
 
-    // External URL configuration for Logout
     const logoutUrl = 'log_in.html';
+    let currentTab = 'contracts';
 
-    // Read active role parameters passed from login.html
-    const urlParams = new URLSearchParams(window.location.search);
-    const activeRole = urlParams.get('role') || localStorage.getItem('agri_role') || 'farmer';
-    let currentTab = 'dashboard';
-
-    // Render Sidebar Navigation
     function renderSidebar() {
       const navContainer = document.getElementById('sidebarNav');
       navContainer.innerHTML = '';
@@ -106,18 +346,9 @@
         
         link.href = item.href;
         
-        // Open external links in a new tab if they start with http/https
         if (item.href.startsWith('http://') || item.href.startsWith('https://')) {
           link.target = '_blank';
           link.rel = 'noopener noreferrer';
-        }
-
-        // Handle internal tab switching if href is '#'
-        if (item.href === '#') {
-          link.onclick = (e) => {
-            e.preventDefault();
-            switchTab(item.id);
-          };
         }
 
         link.className = `w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-sm font-bold tracking-wider transition-all uppercase ${
@@ -133,7 +364,6 @@
         navContainer.appendChild(link);
       });
 
-      // Update Logout button href link
       const logoutBtn = document.getElementById('logoutBtn');
       if (logoutBtn) {
         logoutBtn.href = logoutUrl;
@@ -144,134 +374,26 @@
       }
     }
 
-    // Tab Switch Router
-    function switchTab(tabId) {
-      currentTab = tabId;
-      renderSidebar();
-      
-      const container = document.getElementById('screenContainer');
-
-      if (tabId === 'dashboard') {
-        renderDashboardHome(container);
-      } else {
-        const matched = navItems.find(i => i.id === tabId);
-        container.innerHTML = `
-          <div class="bg-white/90 backdrop-blur-sm p-8 rounded-3xl border border-gray-100 shadow-sm">
-            <h3 class="text-xl font-bold text-[#5C94E5] uppercase tracking-wide mb-2">${matched ? matched.label : tabId}</h3>
-            <p class="text-sm text-gray-500">This module handles ${matched ? matched.label.toLowerCase() : tabId} management for your agricultural workspace.</p>
-          </div>
-        `;
-      }
-      
-      // Trigger icon replacement AFTER the container and sidebar are fully populated
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-      }
+    function openRequestModal() {
+      document.getElementById('contractModal').classList.remove('hidden');
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 
-    // Render Dashboard Cards View
-    function renderDashboardHome(container) {
-      container.innerHTML = `
-        <!-- Welcome Header Banner -->
-        <div class="bg-[#FDF7EE] p-6 rounded-3xl border border-amber-100 mb-6 shadow-sm relative overflow-hidden">
-          <div class="flex flex-col lg:flex-row gap-6 items-center justify-between relative z-10">
-            <div>
-              <p class="text-xs font-bold tracking-widest text-[#5C94E5] uppercase mb-1">YOUR FARM, CONNECTED</p>
-              <h1 class="text-2xl font-extrabold text-gray-900 tracking-tight">Grow your reach. Keep your value.</h1>
-              <p class="text-sm text-gray-500 mt-1">Your transparent selling pipeline at a glance.</p>
-            </div>
-            
-            <!-- Farm Image -->
-            <div class="w-full lg:w-80 h-36 rounded-2xl overflow-hidden shadow-md border border-white flex-shrink-0 relative group">
-              <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80" alt="Farm Landscape" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
-              <span class="absolute bottom-2.5 left-2.5 text-white text-[11px] font-bold bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-md">Live Harvest Field</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 Metrics Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-          <!-- Card 1 -->
-          <div class="bg-white p-6 rounded-3xl border border-gray-100 hover:border-gray-200 transition-all shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-2xl bg-[#FDF0C3] text-emerald-700 flex items-center justify-center mb-4 border border-amber-200">
-                <i data-lucide="package" class="w-5 h-5"></i>
-              </div>
-              <p class="text-xs font-medium text-gray-500 mb-1">Total listings</p>
-              <h3 class="text-3xl font-black text-gray-900">1</h3>
-            </div>
-            <p class="text-xs font-bold text-[#5C94E5] mt-4">+1 this month</p>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="bg-white p-6 rounded-3xl border border-gray-100 hover:border-gray-200 transition-all shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-2xl bg-[#FDF0C3] text-emerald-700 flex items-center justify-center mb-4 border border-amber-200">
-                <i data-lucide="clipboard-check" class="w-5 h-5"></i>
-              </div>
-              <p class="text-xs font-medium text-gray-500 mb-1">Active orders</p>
-              <h3 class="text-3xl font-black text-gray-900">0</h3>
-            </div>
-            <p class="text-xs font-bold text-[#5C94E5] mt-4">Live pipeline</p>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="bg-white p-6 rounded-3xl border border-gray-100 hover:border-gray-200 transition-all shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-2xl bg-[#FDF0C3] text-emerald-700 flex items-center justify-center mb-4 border border-amber-200">
-                <i data-lucide="shield-check" class="w-5 h-5"></i>
-              </div>
-              <p class="text-xs font-medium text-gray-500 mb-1">Pending escrow</p>
-              <h3 class="text-3xl font-black text-gray-900">₹0</h3>
-            </div>
-            <p class="text-xs font-bold text-[#5C94E5] mt-4 uppercase">DEMO ESCROW</p>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="bg-white p-6 rounded-3xl border border-gray-100 hover:border-gray-200 transition-all shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-2xl bg-[#FDF0C3] text-emerald-700 flex items-center justify-center mb-4 border border-amber-200">
-                <i data-lucide="indian-rupee" class="w-5 h-5"></i>
-              </div>
-              <p class="text-xs font-medium text-gray-500 mb-1">Total earnings</p>
-              <h3 class="text-3xl font-black text-gray-900">₹0</h3>
-            </div>
-            <p class="text-xs font-bold text-[#5C94E5] mt-4">Released payments</p>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="bg-white p-6 rounded-3xl border border-gray-100 hover:border-gray-200 transition-all shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-2xl bg-[#FDF0C3] text-emerald-700 flex items-center justify-center mb-4 border border-amber-200">
-                <i data-lucide="sparkles" class="w-5 h-5"></i>
-              </div>
-              <p class="text-xs font-medium text-gray-500 mb-1">Average AI quality</p>
-              <h3 class="text-3xl font-black text-gray-900">92/100</h3>
-            </div>
-            <p class="text-xs font-bold text-[#5C94E5] mt-4">Across your produce</p>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="bg-white p-6 rounded-3xl border border-gray-100 hover:border-gray-200 transition-all shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-2xl bg-[#FDF0C3] text-emerald-700 flex items-center justify-center mb-4 border border-amber-200">
-                <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
-              </div>
-              <p class="text-xs font-medium text-gray-500 mb-1">Avg. selling price</p>
-              <h3 class="text-3xl font-black text-gray-900">₹35<span class="text-base font-normal text-gray-500">/kg</span></h3>
-            </div>
-            <p class="text-xs font-bold text-[#5C94E5] mt-4">Fair price signal</p>
-          </div>
-
-        </div>
-      `;
+    function closeRequestModal() {
+      document.getElementById('contractModal').classList.add('hidden');
     }
 
-    // Initialize View with the proper green header accent color
-    document.getElementById('roleHeader').innerHTML = `${activeRole.toUpperCase()} <span class="text-[#659F68]">DASHBOARD</span>`;
-    switchTab('dashboard');
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Contract proposal successfully broadcasted to registered buyers!');
+      closeRequestModal();
+    }
+
+    renderSidebar();
+
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
   </script>
 </body>
 </html>

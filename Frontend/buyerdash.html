@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGRI-CONNECT - Buyer Dashboard</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Custom scrollbar for clean aesthetic */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #D6C2B0; border-radius: 9999px; }
+  </style>
+</head>
+<body class="min-h-screen font-sans antialiased text-gray-800 flex" style="background-color: #F3EFEA; background-image: radial-gradient(circle at 20% 20%, rgba(249, 87, 56, 0.16) 0%, transparent 50%), radial-gradient(circle at 82% 78%, rgba(235, 74, 95, 0.14) 0%, transparent 58%);">
+
+  <!-- Left Navigation Sidebar -->
+  <aside class="w-64 bg-white/95 backdrop-blur-sm border-r border-[#E0D1C3] p-6 flex flex-col justify-between rounded-r-3xl shadow-sm z-10 flex-shrink-0 min-h-screen">
+    <div>
+      <!-- Brand Title -->
+      <div class="px-2 py-3 mb-6">
+        <h1 class="text-xl font-bold tracking-widest text-[#D97706] uppercase flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-[#F59E0B]"></span> DASHBOARD
+        </h1>
+      </div>
+
+      <!-- Sidebar Navigation Links -->
+      <nav class="space-y-2">
+        <a href="buyerdash.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-sm font-bold tracking-wider bg-amber-50 text-[#B45309] shadow-sm border border-amber-200 uppercase transition-all">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span>BUYING DESK</span>
+        </a>
+        <a href="farmeraddproduct.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-sm font-bold tracking-wider text-gray-600 hover:bg-amber-50/60 hover:text-amber-700 uppercase transition-all">
+          <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+          <span>MY CART / ADD PRODUCE</span>
+        </a>
+        <a href="byerdel.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-sm font-bold tracking-wider text-gray-600 hover:bg-amber-50/60 hover:text-amber-700 uppercase transition-all">
+          <i data-lucide="package" class="w-4 h-4"></i>
+          <span>MY ORDERS</span>
+        </a>
+        <a href="byerprofile.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-sm font-bold tracking-wider text-gray-600 hover:bg-amber-50/60 hover:text-amber-700 uppercase transition-all">
+          <i data-lucide="user-check" class="w-4 h-4"></i>
+          <span>BUYER PROFILE</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Footer Logout Link -->
+    <div class="pt-4 border-t border-[#E0D1C3]">
+      <a href="log_in.html" class="w-full flex items-center gap-3.5 px-5 py-3.5 rounded-2xl text-sm font-bold tracking-wider text-rose-600 hover:bg-rose-50 transition-all uppercase">
+        <i data-lucide="log-out" class="w-5 h-5"></i>
+        <span>LOG OUT</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Panel -->
+  <main class="flex-1 p-8 overflow-y-auto min-h-screen">
+    
+    <!-- Header Bar -->
+    <header class="flex justify-between items-center mb-8">
+      <div class="w-full h-[80px] bg-white/95 backdrop-blur-sm rounded-2xl shadow-sm border border-[#E0D1C3] p-4 flex items-center justify-between">
+        <h2 class="text-sm font-extrabold tracking-wider uppercase flex items-center gap-1">
+          <span class="text-gray-900">FARMERS</span>
+          <span class="text-[#F59E0B]">MARKET</span>
+        </h2>
+
+        <div class="flex items-center gap-4">
+          <span class="px-4 py-1.5 bg-[#FEF3C7] text-[#B45309] font-bold text-xs tracking-wider rounded-full uppercase border border-amber-200">
+            LIVE
+          </span>
+          <div class="w-10 h-10 rounded-full bg-[#B91C1C] flex items-center justify-center text-white font-bold text-sm shadow-sm cursor-pointer hover:opacity-90 transition-opacity">
+            <i data-lucide="user" class="w-5 h-5"></i>
+          </div>
+        </div> 
+      </div>
+    </header>
+
+    <!-- Banner Section -->
+    <div class="bg-white/95 backdrop-blur-sm rounded-3xl p-8 mb-8 border border-[#E0D1C3] shadow-sm flex items-center justify-between">
+      <div>
+        <p class="text-xs font-extrabold text-[#D97706] tracking-wider uppercase mb-2">YOUR BUYING DESK</p>
+        <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Find quality you can verify.</h3>
+        <p class="text-sm text-gray-500 font-medium">Source directly from verified farms with confidence.</p>
+      </div>
+      <div class="text-[#F59E0B]">
+        <i data-lucide="sun-medium" class="w-16 h-16 stroke-[1.5]"></i>
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+      
+      <div class="bg-white/95 backdrop-blur-sm p-5 rounded-3xl border border-[#E0D1C3] shadow-sm">
+        <div class="w-10 h-10 rounded-2xl bg-amber-50 text-[#D97706] flex items-center justify-center mb-4 border border-amber-200/60">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        </div>
+        <p class="text-xs text-gray-500 font-semibold mb-1">Available listings</p>
+        <h4 id="statListingCount" class="text-2xl font-black text-gray-900 mb-1">6</h4>
+        <p class="text-[11px] text-[#D97706] font-bold">Verified produce</p>
+      </div>
+
+      <div class="bg-white/95 backdrop-blur-sm p-5 rounded-3xl border border-[#E0D1C3] shadow-sm">
+        <div class="w-10 h-10 rounded-2xl bg-amber-50 text-[#D97706] flex items-center justify-center mb-4 border border-amber-200/60">
+          <i data-lucide="clipboard-check" class="w-5 h-5"></i>
+        </div>
+        <p class="text-xs text-gray-500 font-semibold mb-1">Orders placed</p>
+        <h4 id="statOrdersPlaced" class="text-2xl font-black text-gray-900 mb-1">0</h4>
+        <p class="text-[11px] text-gray-400 font-medium">Across your team</p>
+      </div>
+
+      <div class="bg-white/95 backdrop-blur-sm p-5 rounded-3xl border border-[#E0D1C3] shadow-sm">
+        <div class="w-10 h-10 rounded-2xl bg-amber-50 text-[#D97706] flex items-center justify-center mb-4 border border-amber-200/60">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
+        </div>
+        <p class="text-xs text-gray-500 font-semibold mb-1">In escrow</p>
+        <h4 class="text-2xl font-black text-gray-900 mb-1">₹0</h4>
+        <p class="text-[11px] text-[#B91C1C] font-bold">DEMO ESCROW</p>
+      </div>
+
+      <div class="bg-white/95 backdrop-blur-sm p-5 rounded-3xl border border-[#E0D1C3] shadow-sm">
+        <div class="w-10 h-10 rounded-2xl bg-amber-50 text-[#D97706] flex items-center justify-center mb-4 border border-amber-200/60">
+          <i data-lucide="circle-dollar-sign" class="w-5 h-5"></i>
+        </div>
+        <p class="text-xs text-gray-500 font-semibold mb-1">Total spend</p>
+        <h4 id="statTotalSpend" class="text-2xl font-black text-gray-900 mb-1">₹0</h4>
+        <p class="text-[11px] text-gray-400 font-medium">Transparent total</p>
+      </div>
+
+      <div class="bg-white/95 backdrop-blur-sm p-5 rounded-3xl border border-[#E0D1C3] shadow-sm">
+        <div class="w-10 h-10 rounded-2xl bg-amber-50 text-[#D97706] flex items-center justify-center mb-4 border border-amber-200/60">
+          <i data-lucide="sparkles" class="w-5 h-5"></i>
+        </div>
+        <p class="text-xs text-gray-500 font-semibold mb-1">Avg. quality</p>
+        <h4 class="text-2xl font-black text-gray-900 mb-1">91/100</h4>
+        <p class="text-[11px] text-[#D97706] font-bold">AI verified</p>
+      </div>
+
+      <div class="bg-white/95 backdrop-blur-sm p-5 rounded-3xl border border-[#E0D1C3] shadow-sm">
+        <div class="w-10 h-10 rounded-2xl bg-amber-50 text-[#D97706] flex items-center justify-center mb-4 border border-amber-200/60">
+          <i data-lucide="map-pin" class="w-5 h-5"></i>
+        </div>
+        <p class="text-xs text-gray-500 font-semibold mb-1">Nearby farms</p>
+        <h4 class="text-2xl font-black text-gray-900 mb-1">24</h4>
+        <p class="text-[11px] text-gray-400 font-medium">Within 100 km</p>
+      </div>
+
+    </div>
+
+    <!-- Product Grid -->
+    <div class="mb-6">
+      <h3 class="text-xl font-bold text-gray-900 mb-6">Verified Produce Listings</h3>
+      <div id="produceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- JS rendered cards -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Product Detail Modal -->
+  <div id="detailModal" class="fixed inset-0 bg-gray-900/45 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white/95 backdrop-blur-sm rounded-3xl max-w-2xl w-full p-8 shadow-2xl relative border border-[#E0D1C3] max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-amber-50 transition-colors">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Left Thumbnail Column -->
+        <div class="md:col-span-5 flex flex-col items-center">
+          <div class="relative w-full aspect-square rounded-3xl overflow-hidden shadow-sm border border-[#E0D1C3] mb-3">
+            <img id="modalImage" src="" alt="" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#B91C1C] shadow-sm border border-red-100 flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#D97706]"></i> VERIFIED FARMER
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Content Details -->
+        <div class="md:col-span-7 flex flex-col justify-between">
+          <div>
+            <p id="modalDirectOrigin" class="text-xs font-extrabold uppercase text-[#D97706] tracking-widest mb-1">DIRECT FROM NASHIK</p>
+            <h2 id="modalTitle" class="text-3xl font-black text-gray-900 mb-3">Produce Title</h2>
+            <p class="text-xs text-gray-500 font-medium leading-relaxed mb-4">Freshly harvested and independently quality assessed for confident buying.</p>
+
+            <!-- Badges -->
+            <div class="flex flex-wrap items-center gap-2 mb-6">
+              <span id="modalFarmerBadge" class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-xl text-xs font-semibold border border-gray-200 flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#D97706]"></i> <span id="modalFarmer">Rajesh Patil · Verified</span>
+              </span>
+
+              <span id="modalLocationBadge" class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-xl text-xs font-semibold border border-gray-200 flex items-center gap-1.5">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#D97706]"></i> <span id="modalLocation">Nashik, Maharashtra</span>
+              </span>
+            </div>
+
+            <!-- Price Display -->
+            <div class="flex items-baseline gap-2 mb-6">
+              <span id="modalPrice" class="text-4xl font-black text-gray-900">₹35</span>
+              <span id="modalUnit" class="text-gray-500 font-semibold text-sm">/ kg</span>
+              <span class="ml-2 px-2.5 py-1 bg-amber-50 text-[#B45309] text-[11px] font-bold rounded-lg border border-amber-200">Fair price</span>
+            </div>
+
+            <!-- Metrics grid -->
+            <div class="grid grid-cols-3 gap-3 mb-6 bg-gray-50 p-3.5 rounded-2xl border border-gray-200/60">
+              <div>
+                <p class="text-[10px] text-gray-400 uppercase font-semibold">Available</p>
+                <p id="modalAvailable" class="text-xs font-bold text-gray-800">100 kg</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-gray-400 uppercase font-semibold">Harvest date</p>
+                <p class="text-xs font-bold text-gray-800">10 Sep 2026</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-gray-400 uppercase font-semibold">Delivery estimate</p>
+                <p class="text-xs font-bold text-gray-800">2–3 days</p>
+              </div>
+            </div>
+
+            <!-- AI Assessment Box -->
+            <div class="bg-amber-50/60 border border-amber-200/70 rounded-2xl p-4 mb-6">
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-xs font-extrabold uppercase text-[#D97706] flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-[#B91C1C]"></i> AI QUALITY ASSESSMENT — PROTOTYPE
+                </span>
+                <span id="modalAiScore" class="text-xl font-black text-[#B91C1C]">92/100</span>
+              </div>
+              <div class="space-y-2 text-xs mb-3">
+                <div class="flex justify-between items-center text-gray-600">
+                  <span>Freshness</span>
+                  <div class="w-36 bg-amber-100 h-2 rounded-full overflow-hidden">
+                    <div class="bg-[#F59E0B] h-full rounded-full" style="width: 94%"></div>
+                  </div>
+                  <span class="font-bold text-gray-800">94%</span>
+                </div>
+                <div class="flex justify-between items-center text-gray-600">
+                  <span>Appearance</span>
+                  <div class="w-36 bg-amber-100 h-2 rounded-full overflow-hidden">
+                    <div class="bg-[#F59E0B] h-full rounded-full" style="width: 91%"></div>
+                  </div>
+                  <span class="font-bold text-gray-800">91%</span>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500"><span id="modalGradeLabel" class="font-bold text-[#B91C1C]">Grade A</span> High quality for direct retail sale</p>
+            </div>
+          </div>
+
+          <!-- Quantity and Buy Action Section -->
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-2">
+              <div class="flex items-center gap-1 border border-gray-200 rounded-2xl bg-gray-50 p-1">
+                <button onclick="changeQty(-1)" class="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center font-bold text-gray-600 hover:bg-amber-50 transition-colors">-</button>
+                <span id="quantityInput" class="w-12 text-center text-sm font-bold text-gray-900">1</span>
+                <button onclick="changeQty(1)" class="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center font-bold text-gray-600 hover:bg-amber-50 transition-colors">+</button>
+              </div>
+
+              <div class="text-right">
+                <p class="text-[10px] text-gray-400 uppercase font-semibold">Total produce value</p>
+                <p id="totalProduceValue" class="text-2xl font-black text-gray-900">₹35</p>
+              </div>
+
+              <button onclick="executeBuyNow()" class="bg-[#F59E0B] hover:bg-amber-600 text-white font-extrabold text-sm px-8 py-3.5 rounded-2xl shadow-sm transition-all flex items-center gap-2">
+                <span>Buy now</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <p class="text-[10px] text-gray-400 text-center">Payment is secured in DEMO ESCROW and only released after inspection</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Engine -->
+  <script>
+    const produceItems = [
+      {
+        id: 1,
+        title: 'Tomatoes',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '92/100',
+        verified: true,
+        price: '₹35',
+        unit: 'kg',
+        available: '100 kg',
+        image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=1'
+      },
+      {
+        id: 2,
+        title: 'Fresh Spinach',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A+',
+        aiScore: '96/100',
+        verified: true,
+        price: '₹22',
+        unit: 'kg',
+        available: '250 kg',
+        image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=2'
+      },
+      {
+        id: 3,
+        title: 'Organic Carrots',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '90/100',
+        verified: true,
+        price: '₹45',
+        unit: 'kg',
+        available: '180 kg',
+        image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b3JnYW5pYyUyMGNhcnJvdHxlbnwwfHwwfHx8MA%3D%3D',
+        detailHref: 'farmproduce-detail.html?id=3'
+      },
+      {
+        id: 4,
+        title: 'Red Onions',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'B+',
+        aiScore: '88/100',
+        verified: true,
+        price: '₹28',
+        unit: 'kg',
+        available: '500 kg',
+        image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=4'
+      },
+      {
+        id: 5,
+        title: 'Green Bell Peppers',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '94/100',
+        verified: true,
+        price: '₹50',
+        unit: 'kg',
+        available: '120 kg',
+        image: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=5'
+      },
+      {
+        id: 6,
+        title: 'Fresh Potatoes',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '91/100',
+        verified: true,
+        price: '₹25',
+        unit: 'kg',
+        available: '400 kg',
+        image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=6'
+      }
+    ];
+
+    let currentSelectedItem = null;
+    let selectedQuantity = 1;
+
+    function renderProduceCards() {
+      const grid = document.getElementById('produceGrid');
+      grid.innerHTML = '';
+
+      produceItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden border border-[#E0D1C3] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300';
+        
+        card.innerHTML = `
+          <div>
+            <!-- Image & Grade Badge -->
+            <div class="relative h-48 w-full overflow-hidden">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+              <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#B91C1C] shadow-sm border border-amber-200 flex items-center gap-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D97706]"></i> Grade ${item.grade}
+              </span>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-1">
+                <h4 class="font-extrabold text-xl text-gray-900">${item.title}</h4>
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#D97706] flex-shrink-0 mt-1"></i>
+              </div>
+              <p class="text-xs text-gray-400 font-medium mb-3">${item.farmer} · ${item.location}</p>
+
+              <div class="flex items-center gap-3 text-xs mb-4 text-gray-500">
+                <span class="font-bold text-[#B91C1C]">AI Score: ${item.aiScore}</span>
+                <span>•</span>
+                <span class="text-[#D97706] font-semibold">Verified</span>
+              </div>
+
+              <div class="flex items-baseline justify-between pt-2 border-t border-amber-100/60">
+                <div>
+                  <span class="text-2xl font-black text-gray-900">${item.price}</span>
+                  <span class="text-xs text-gray-400 font-semibold">/${item.unit}</span>
+                </div>
+                <span class="text-xs text-gray-400 font-medium">${item.available} available</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Open Modal Button -->
+          <div class="px-6 pb-6 pt-0">
+            <button onclick="openModal(${item.id})" class="w-full bg-amber-50/70 hover:bg-amber-100 text-gray-800 border border-amber-200 py-3 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+              <span>View details</span>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+            </button>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function openModal(id) {
+      currentSelectedItem = produceItems.find(p => p.id === id);
+      if (!currentSelectedItem) return;
+
+      selectedQuantity = 1;
+      document.getElementById('quantityInput').textContent = selectedQuantity;
+      
+      document.getElementById('modalImage').src = currentSelectedItem.image;
+      document.getElementById('modalTitle').textContent = currentSelectedItem.title;
+      document.getElementById('modalDirectOrigin').textContent = `DIRECT FROM ${currentSelectedItem.location.toUpperCase()}`;
+      document.getElementById('modalFarmer').textContent = `${currentSelectedItem.farmer} · Verified`;
+      document.getElementById('modalLocation').textContent = `${currentSelectedItem.location}, Maharashtra`;
+      document.getElementById('modalPrice').textContent = currentSelectedItem.price;
+      document.getElementById('modalUnit').textContent = `/${currentSelectedItem.unit}`;
+      document.getElementById('modalAvailable').textContent = currentSelectedItem.available;
+      document.getElementById('modalAiScore').textContent = currentSelectedItem.aiScore;
+      document.getElementById('modalGradeLabel').textContent = `Grade ${currentSelectedItem.grade}`;
+
+      updateTotalVal();
+
+      document.getElementById('detailModal').classList.remove('hidden');
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function closeModal() {
+      document.getElementById('detailModal').classList.add('hidden');
+    }
+
+    function changeQty(delta) {
+      selectedQuantity = Math.max(1, selectedQuantity + delta);
+      document.getElementById('quantityInput').textContent = selectedQuantity;
+      updateTotalVal();
+    }
+
+    function updateTotalVal() {
+      if (!currentSelectedItem) return;
+      const numPrice = parseInt(currentSelectedItem.price.replace('₹', '')) || 0;
+      const total = numPrice * selectedQuantity;
+      document.getElementById('totalProduceValue').textContent = `₹${total}`;
+    }
+
+    function executeBuyNow() {
+      if (!currentSelectedItem) return;
+
+      // Read current cart from localStorage
+      let cart = JSON.parse(localStorage.getItem('agriCartItems') || '[]');
+
+      // Calculate total item value
+      const numPrice = parseInt(currentSelectedItem.price.replace('₹', '')) || 0;
+      const itemTotal = numPrice * selectedQuantity;
+
+      // Add to cart list
+      cart.push({
+        id: currentSelectedItem.id,
+        title: currentSelectedItem.title,
+        farmer: currentSelectedItem.farmer,
+        location: currentSelectedItem.location,
+        price: currentSelectedItem.price,
+        unit: currentSelectedItem.unit,
+        quantity: selectedQuantity,
+        totalPrice: itemTotal,
+        image: currentSelectedItem.image,
+        addedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
+
+      localStorage.setItem('agriCartItems', JSON.stringify(cart));
+
+      // Close modal & redirect to farmeraddproduct.html
+      closeModal();
+      window.location.href = 'farmeraddproduct.html';
+    }
+
+    // Sync Stats Bar dynamically
+    function refreshStats() {
+      let cart = JSON.parse(localStorage.getItem('agriCartItems') || '[]');
+      document.getElementById('statOrdersPlaced').textContent = cart.length;
+      
+      const totalSpend = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+      document.getElementById('statTotalSpend').textContent = `₹${totalSpend}`;
+    }
+
+    // Initial load
+    renderProduceCards();
+    refreshStats();
+  </script>
+</body>
+</html>

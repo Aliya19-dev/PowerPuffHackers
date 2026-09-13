@@ -81,13 +81,13 @@
         >
       </div>
 
-      <!-- Submit Button -->
+      <!-- Dynamic Single Button Switching Action per Selected Connection -->
       <button 
         type="submit" 
         id="submitBtn"
         class="w-full font-medium py-3.5 px-4 rounded-2xl text-sm transition-colors shadow-sm mt-2 text-white"
       >
-        Sign in
+        Sign in as Farmer
       </button>
     </form>
 
@@ -108,6 +108,7 @@
       farmer: {
         targetPage: 'farmerdash.html',
         registerPage: 'farmer-register.html',
+        buttonText: 'Sign in as Farmer',
         email: '',
         password: 'farmer@123',
         bgImage: "url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200&auto=format&fit=crop&q=80')",
@@ -121,6 +122,7 @@
       buyer: {
         targetPage: 'buyerdash.html',
         registerPage: 'buyer-register.html',
+        buttonText: 'Sign in as Buyer',
         email: '',
         password: '',
         bgImage: "url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80')",
@@ -137,6 +139,10 @@
 
     function handleAuthSubmit(event) {
       event.preventDefault();
+      const emailVal = document.getElementById('email').value;
+      if (activeRole === 'buyer') {
+        localStorage.setItem('buyerEmail', emailVal || 'buyer@agriconnect.com');
+      }
       const destination = themeConfig[activeRole].targetPage;
       window.location.href = destination;
     }
@@ -188,9 +194,10 @@
       logoIcon.style.color = theme.logoIconColor;
       logoIcon.style.stroke = theme.logoIconColor;
 
-      // 6. Form Primary Button & Links
+      // 6. Form Primary Button Label & Redirection Link
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.style.backgroundColor = theme.primaryAccent;
+      submitBtn.textContent = theme.buttonText;
 
       const footerLink = document.getElementById('footerLink');
       footerLink.style.color = theme.primaryAccent;

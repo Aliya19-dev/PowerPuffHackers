@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Profile - AGRI-CONNECT</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#E8F5E9] via-[#F4F9F4] to-[#E2EAF4] font-sans antialiased text-gray-800 p-4 flex gap-4">
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="w-72 bg-white/95 backdrop-blur-md border border-emerald-900/10 p-6 flex flex-col justify-between rounded-3xl shadow-sm z-10 shrink-0 min-h-[calc(100vh-2rem)]">
+    <div>
+      <!-- Sidebar Title Header -->
+      <div class="px-2 py-3 mb-6">
+        <h1 class="text-xl font-bold tracking-widest text-[#5292EA] uppercase flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span> 
+          <span>DASH</span><span class="text-[#3B82F6]">BOARD</span>
+        </h1>
+      </div>
+
+      <!-- Navigation Menu Items -->
+      <nav class="space-y-2">
+        <a href="farmerdash.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA] transition-all uppercase">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          <span>DASHBOARD</span>
+        </a>
+        <a href="farmadd-produce.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA] transition-all uppercase">
+          <i data-lucide="plus-circle" class="w-4 h-4"></i>
+          <span>ADD PRODUCE</span>
+        </a>
+        <a href="farmmy-produce.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA] transition-all uppercase">
+          <i data-lucide="package" class="w-4 h-4"></i>
+          <span>MY PRODUCE</span>
+        </a>
+        <a href="farmorders.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA] transition-all uppercase">
+          <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+          <span>ORDERS</span>
+        </a>
+        <a href="farmcontracts.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA] transition-all uppercase">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>CONTRACTS</span>
+        </a>
+        <a href="farmpayments.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA] transition-all uppercase">
+          <i data-lucide="credit-card" class="w-4 h-4"></i>
+          <span>PAYMENTS</span>
+        </a>
+        <a href="farmlogistics.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA] transition-all uppercase">
+          <i data-lucide="truck" class="w-4 h-4"></i>
+          <span>LOGISTICS</span>
+        </a>
+        <!-- Active Link: Profile -->
+        <a href="farmprofile.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider bg-[#FDF0C3] text-[#5292EA] shadow-sm border border-amber-200/60 uppercase">
+          <i data-lucide="user" class="w-4 h-4"></i>
+          <span>PROFILE</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Footer Logout Link -->
+    <div class="mt-auto pt-4 border-t border-gray-100">
+      <a href="log_in.html" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-emerald-700 hover:bg-emerald-50 transition-all uppercase">
+        <i data-lucide="log-out" class="w-4 h-4"></i>
+        <span>LOG OUT</span>
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- Right Main Content Space -->
+  <div class="flex-1 flex flex-col gap-4 min-w-0">
+    
+    <!-- Top Bar Card -->
+    <header class="bg-white/95 backdrop-blur-md rounded-2xl px-8 py-5 flex items-center justify-between shadow-sm border border-gray-100">
+      <h1 class="text-sm font-extrabold tracking-wider uppercase">
+       <span class="text-[#1F2937]">Farmers</span> <span class="text-[#659F68]">Market</span>
+      </h1>
+
+      <div class="flex items-center space-x-3">
+        <span class="bg-[#FDF0C3] text-[#8D6B00] border border-amber-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+          LIVE
+        </span>
+        <a href="farmprofile.html" class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shadow-sm cursor-pointer hover:bg-emerald-700 transition-colors">
+          <i data-lucide="user" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Workspace -->
+    <main class="flex-1 flex flex-col gap-4">
+      
+      <!-- Profile Overview Card -->
+      <div class="bg-white/95 backdrop-blur-md rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <div class="relative">
+            <div class="w-24 h-24 rounded-full bg-emerald-600 text-white flex items-center justify-center text-3xl font-black shadow-md">
+              RP
+            </div>
+            <span class="absolute bottom-0 right-0 bg-emerald-500 border-2 border-white w-5 h-5 rounded-full"></span>
+          </div>
+          <div class="text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start gap-2">
+              <h2 class="text-2xl font-black text-gray-900">Ramesh Patil</h2>
+              <i data-lucide="badge-check" class="w-5 h-5 text-[#5292EA] fill-blue-50"></i>
+            </div>
+            <p class="text-xs font-bold text-[#8D6B00] uppercase tracking-wide mt-0.5">Verified Produce Seller</p>
+            <p class="text-sm text-gray-500 mt-1 flex items-center justify-center md:justify-start gap-1">
+              <i data-lucide="map-pin" class="w-4 h-4 text-gray-400"></i> Green Valley Organic Farm, Nashik, Maharashtra
+            </p>
+          </div>
+        </div>
+        <button class="bg-[#FDF0C3] hover:bg-[#F9E6A2] text-[#8D6B00] border border-amber-200 text-xs font-bold px-5 py-3 rounded-full transition-all flex items-center gap-2 shadow-sm">
+          <i data-lucide="edit-3" class="w-4 h-4"></i> Edit Profile
+        </button>
+      </div>
+
+      <!-- Quick Seller Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white/95 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-gray-100 text-center">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Seller Rating</span>
+          <p class="text-2xl font-black text-gray-900 mt-1 flex items-center justify-center gap-1">
+            4.8 <i data-lucide="star" class="w-5 h-5 fill-amber-400 text-amber-400"></i>
+          </p>
+        </div>
+        <div class="bg-white/95 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-gray-100 text-center">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Land Area</span>
+          <p class="text-2xl font-black text-gray-900 mt-1">12 Acres</p>
+        </div>
+        <div class="bg-white/95 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-gray-100 text-center">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Farming Method</span>
+          <p class="text-2xl font-black text-emerald-600 mt-1">100% Organic</p>
+        </div>
+        <div class="bg-white/95 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-gray-100 text-center">
+          <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">FSSAI License</span>
+          <p class="text-2xl font-black text-[#5292EA] mt-1">Verified</p>
+        </div>
+      </div>
+
+      <!-- Main Profile Form Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <!-- Personal & Farm Details (2 Columns) -->
+        <div class="lg:col-span-2 bg-white/95 backdrop-blur-md rounded-3xl p-6 shadow-sm border border-gray-100 space-y-6">
+          
+          <div class="border-b border-gray-100 pb-4">
+            <span class="text-xs font-bold tracking-wider text-[#8D6B00] uppercase">SELLER DETAILS</span>
+            <h3 class="text-lg font-black text-gray-900">Personal & Farm Information</h3>
+          </div>
+
+          <form class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Full Name</label>
+                <input type="text" value="Ramesh Patil" class="w-full bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none focus:border-gray-200">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Phone Number</label>
+                <input type="text" value="+91 98230 11234" class="w-full bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none focus:border-gray-200">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Email Address</label>
+                <input type="email" value="ramesh.patil@agri-connect.com" class="w-full bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none focus:border-gray-200">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Farm Name</label>
+                <input type="text" value="Green Valley Organic Farm" class="w-full bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none focus:border-gray-200">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Primary Crops Grown</label>
+                <input type="text" value="Tomatoes, Okra, Brinjal, Onions" class="w-full bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none focus:border-gray-200">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Experience</label>
+                <input type="text" value="14 Years in Commercial Farming" class="w-full bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none focus:border-gray-200">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Farm Address / Location</label>
+              <textarea rows="2" class="w-full bg-white border border-gray-100 rounded-xl px-4 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none focus:border-gray-200">Gate No. 42, Dindori Road, Nashik, Maharashtra - 422004</textarea>
+            </div>
+
+            <div class="pt-2">
+              <button type="button" class="bg-[#5292EA] hover:bg-[#3B82F6] text-white text-xs font-bold px-6 py-3 rounded-full transition-colors shadow-sm">
+                Save Changes
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- Right Side: Verification & Payout Info -->
+        <div class="space-y-4">
+          
+          <!-- Verification Status -->
+          <div class="bg-white/95 backdrop-blur-md rounded-3xl p-6 shadow-sm border border-gray-100">
+            <h3 class="text-sm font-extrabold text-gray-900 mb-4 flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i> Verification & Badges
+            </h3>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-gray-100">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="id-card" class="w-5 h-5 text-[#8D6B00]"></i>
+                  <span class="text-xs font-bold text-gray-900">Aadhaar / ID Verification</span>
+                </div>
+                <span class="text-[10px] font-black bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full uppercase">Verified</span>
+              </div>
+
+              <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-gray-100">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="file-check" class="w-5 h-5 text-[#8D6B00]"></i>
+                  <span class="text-xs font-bold text-gray-900">Organic Certification</span>
+                </div>
+                <span class="text-[10px] font-black bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full uppercase">Active</span>
+              </div>
+
+              <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-gray-100">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="award" class="w-5 h-5 text-[#8D6B00]"></i>
+                  <span class="text-xs font-bold text-gray-900">Quality Assurance Grade</span>
+                </div>
+                <span class="text-[10px] font-black bg-blue-100 text-[#5292EA] px-2.5 py-1 rounded-full uppercase">Grade A+</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Linked Bank Details -->
+          <div class="bg-white/95 backdrop-blur-md rounded-3xl p-6 shadow-sm border border-gray-100">
+            <h3 class="text-sm font-extrabold text-gray-900 mb-4 flex items-center gap-2">
+              <i data-lucide="landmark" class="w-5 h-5 text-[#5292EA]"></i> Bank Payout Account
+            </h3>
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400 font-bold uppercase">Bank Name</span>
+                <span class="text-xs font-bold text-gray-900">State Bank of India</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400 font-bold uppercase">Account No.</span>
+                <span class="text-xs font-bold text-gray-900">•••• •••• 4417</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-gray-400 font-bold uppercase">IFSC Code</span>
+                <span class="text-xs font-bold text-gray-900">SBIN0001234</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>

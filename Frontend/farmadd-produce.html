@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGRI-CONNECT - Add Produce</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#E8F5E9] via-[#F4F9F4] to-[#E2EAF4] font-sans antialiased text-gray-800 p-4 flex gap-4">
+
+  <!-- Left Navigation Sidebar -->
+  <aside class="w-72 bg-white/95 backdrop-blur-md border border-emerald-900/10 p-6 flex flex-col justify-between rounded-3xl shadow-sm z-10 shrink-0 min-h-[calc(100vh-2rem)]">
+    <div>
+      <!-- Brand Title Header -->
+      <div class="px-2 py-3 mb-6">
+        <h1 class="text-xl font-bold tracking-widest text-[#5292EA] uppercase flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span> 
+          <span></span><span class="text-[#3B82F6]">DASHBOARD</span>
+        </h1>
+      </div>
+
+      <!-- Sidebar Navigation -->
+      <nav id="sidebarNav" class="space-y-2">
+        <!-- Rendered dynamically via script -->
+      </nav>
+    </div>
+
+    <!-- Footer Logout Link -->
+    <div class="pt-4 border-t border-gray-100">
+      <a 
+        id="logoutBtn"
+        href="log_in.html" 
+        class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-emerald-700 hover:bg-emerald-50 transition-all uppercase"
+      >
+        <i data-lucide="log-out" class="w-4 h-4"></i>
+        <span>LOG OUT</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Right Main Content Space -->
+  <div class="flex-1 flex flex-col gap-4 min-w-0">
+    
+    <!-- Top Bar Card -->
+    <header class="bg-white/95 backdrop-blur-md rounded-2xl px-8 py-5 flex items-center justify-between shadow-sm border border-gray-100">
+      <h1 class="text-sm font-extrabold tracking-wider uppercase">
+        <span class="text-[#1F2937]">Farmers</span> <span class="text-[#659F68]">Market</span>
+      </h1>
+
+      <div class="flex items-center space-x-3">
+        <!-- Live Badge -->
+        <span class="bg-[#FDF0C3] text-[#8D6B00] border border-amber-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+          LIVE
+        </span>
+        <!-- Profile Avatar Pill linked to Profile -->
+        <a href="farmprofile.html" class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shadow-sm cursor-pointer hover:bg-emerald-700 transition-colors">
+          <i data-lucide="user" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Workspace -->
+    <main class="flex-1 bg-white/95 backdrop-blur-md rounded-3xl p-8 flex flex-col shadow-sm border border-gray-100 min-h-[500px]">
+      
+      <!-- Header Title Section -->
+      <div class="mb-6">
+        <span class="text-xs font-bold tracking-widest text-[#5292EA] uppercase mb-1">LIST A HARVEST</span>
+        <div class="flex justify-between items-end">
+          <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Bring your produce to market.</h1>
+          <span id="stepCounter" class="text-xs font-bold tracking-widest text-gray-400 uppercase">STEP 1 / 5</span>
+        </div>
+        <p class="text-sm text-gray-500 mt-1">A simple five-step path from your field to verified buyers.</p>
+      </div>
+
+      <!-- Wizard Stepper Navigation -->
+      <div class="mb-8 border-b border-gray-100 pb-4">
+        <div class="flex items-center justify-between gap-2 overflow-x-auto pb-2">
+          
+          <!-- Step 1 Indicator -->
+          <div id="stepIndicator-1" class="flex items-center gap-2 transition-all">
+            <div class="step-badge w-6 h-6 rounded-full bg-[#5292EA] text-white text-xs font-bold flex items-center justify-center shrink-0">1</div>
+            <span class="step-text text-xs font-bold text-[#5292EA] whitespace-nowrap">Produce details</span>
+          </div>
+          <div class="h-0.5 w-6 bg-gray-200 shrink-0"></div>
+
+          <!-- Step 2 Indicator -->
+          <div id="stepIndicator-2" class="flex items-center gap-2 opacity-50 transition-all">
+            <div class="step-badge w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center shrink-0">2</div>
+            <span class="step-text text-xs font-medium text-gray-500 whitespace-nowrap">Upload image</span>
+          </div>
+          <div class="h-0.5 w-6 bg-gray-200 shrink-0"></div>
+
+          <!-- Step 3 Indicator -->
+          <div id="stepIndicator-3" class="flex items-center gap-2 opacity-50 transition-all">
+            <div class="step-badge w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center shrink-0">3</div>
+            <span class="step-text text-xs font-medium text-gray-500 whitespace-nowrap">AI quality</span>
+          </div>
+          <div class="h-0.5 w-6 bg-gray-200 shrink-0"></div>
+
+          <!-- Step 4 Indicator -->
+          <div id="stepIndicator-4" class="flex items-center gap-2 opacity-50 transition-all">
+            <div class="step-badge w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center shrink-0">4</div>
+            <span class="step-text text-xs font-medium text-gray-500 whitespace-nowrap">Fair price</span>
+          </div>
+          <div class="h-0.5 w-6 bg-gray-200 shrink-0"></div>
+
+          <!-- Step 5 Indicator -->
+          <div id="stepIndicator-5" class="flex items-center gap-2 opacity-50 transition-all">
+            <div class="step-badge w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center shrink-0">5</div>
+            <span class="step-text text-xs font-medium text-gray-500 whitespace-nowrap">Publish</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Form Card Wrapper -->
+      <div>
+        
+        <!-- STEP 1: Produce Details -->
+        <div id="stepView-1" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Produce name</label>
+              <input type="text" id="inputName" value="Tomatoes" class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-[#5292EA] text-sm font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Category</label>
+              <select id="inputCategory" class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-[#5292EA] text-sm font-medium bg-white">
+                <option value="Vegetables" selected>Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Grains">Grains</option>
+                <option value="Pulses">Pulses</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Quantity</label>
+              <input type="number" id="inputQuantity" value="12" placeholder="e.g. 100" class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-[#5292EA] text-sm font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Unit</label>
+              <select id="inputUnit" class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-[#5292EA] text-sm font-medium bg-white">
+                <option value="kg" selected>kg</option>
+                <option value="ton">ton</option>
+                <option value="quintal">quintal</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Location</label>
+            <input type="text" id="inputLocation" value="Nashik, Maharashtra" class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-[#5292EA] text-sm font-medium">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Harvest date</label>
+            <input type="text" id="inputHarvestDate" value="10 Sep 2026" class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-[#5292EA] text-sm font-medium">
+          </div>
+
+          <div class="pt-4">
+            <button onclick="goToStep(2)" class="flex items-center gap-2 px-6 py-3.5 bg-[#5292EA] hover:bg-[#3B82F6] text-white font-bold text-xs tracking-wider uppercase rounded-full transition-all shadow-sm">
+              <span>Continue to image</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Upload Image -->
+        <div id="stepView-2" class="hidden space-y-6">
+          <div class="border-2 border-dashed border-amber-200 bg-[#FDF0C3]/20 rounded-3xl p-12 text-center flex flex-col items-center justify-center cursor-pointer hover:bg-[#FDF0C3]/30 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-[#FDF0C3] text-[#5292EA] flex items-center justify-center mb-4 border border-amber-200 shadow-sm">
+              <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+            </div>
+            <h4 class="text-base font-bold text-gray-800 mb-1">Upload a clear produce image</h4>
+            <p class="text-xs text-gray-500">JPG or PNG · used for your quality assessment</p>
+          </div>
+
+          <div class="flex items-center gap-3 pt-4">
+            <button onclick="goToStep(1)" class="px-6 py-3.5 border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold text-xs tracking-wider uppercase rounded-full transition-all">
+              Back
+            </button>
+            <button onclick="goToStep(3)" class="flex items-center gap-2 px-6 py-3.5 bg-[#5292EA] hover:bg-[#3B82F6] text-white font-bold text-xs tracking-wider uppercase rounded-full transition-all shadow-sm">
+              <span>Analyze quality</span>
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: AI Quality Processing Indicator -->
+        <div id="stepView-3" class="hidden py-12 text-center space-y-4">
+          <div class="w-16 h-16 border-4 border-[#5292EA] border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <h3 class="text-lg font-bold text-gray-900">Evaluating Quality...</h3>
+          <p class="text-sm text-gray-500">Our computer vision model is scanning grade, surface defects, and color profile.</p>
+        </div>
+
+        <!-- STEP 4: Fair Price Evaluation -->
+        <div id="stepView-4" class="hidden space-y-6">
+          <!-- AI Assessment Result Card -->
+          <div class="bg-[#FDF7EE] rounded-3xl p-5 border border-amber-100 flex items-center justify-between gap-4 shadow-sm">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-2xl overflow-hidden bg-gray-200 flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=150&auto=format&fit=crop&q=80" alt="Produce preview" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="text-[10px] font-bold text-[#5292EA] tracking-widest uppercase">AI QUALITY ASSESSMENT — PROTOTYPE</span>
+                <h4 class="text-base font-bold text-gray-900"><span id="summaryName">Tomatoes</span> · <span class="text-gray-900">Grade A</span></h4>
+                <p class="text-xs text-gray-500">High-quality produce suitable for direct retail sale.</p>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <span class="text-3xl font-black text-[#5292EA]">92</span>
+              <span class="text-xs font-bold text-gray-400">/100</span>
+            </div>
+          </div>
+
+          <!-- Price Breakdown List -->
+          <div class="space-y-3 pt-2">
+            <div class="flex justify-between items-center text-sm py-2 border-b border-gray-100">
+              <span class="text-gray-600 font-medium">Regional average</span>
+              <span class="font-bold text-gray-900">₹28/kg</span>
+            </div>
+            <div class="flex justify-between items-center text-sm py-2 border-b border-gray-100">
+              <span class="text-gray-600 font-medium">Quality adjustment</span>
+              <span class="font-bold text-[#5292EA]">+₹4/kg</span>
+            </div>
+            <div class="flex justify-between items-center text-sm py-2 border-b border-gray-100">
+              <span class="text-gray-600 font-medium">Demand adjustment</span>
+              <span class="font-bold text-[#5292EA]">+₹3/kg</span>
+            </div>
+            
+            <!-- Highlighted Fair Price Box -->
+            <div class="bg-[#FDF0C3] p-4 rounded-2xl flex justify-between items-center border border-amber-200">
+              <span class="text-sm font-bold text-[#8D6B00]">Suggested fair price</span>
+              <div class="flex items-center gap-2">
+                <span class="text-lg font-black text-[#8D6B00]">₹35/kg</span>
+                <span class="px-2 py-0.5 bg-white text-[#8D6B00] text-[10px] font-bold tracking-wider rounded-md uppercase border border-amber-200 shadow-sm">RECOMMENDED</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Calculation -->
+          <div class="pt-4 flex justify-between items-end">
+            <div>
+              <p class="text-xs text-gray-500 font-medium">Estimated listing value</p>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-black text-gray-900">₹420</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-4">
+            <button onclick="goToStep(2)" class="px-6 py-3.5 border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold text-xs tracking-wider uppercase rounded-full transition-all">
+              Back
+            </button>
+            <button onclick="goToStep(5)" class="flex items-center gap-2 px-6 py-3.5 bg-[#5292EA] hover:bg-[#3B82F6] text-white font-bold text-xs tracking-wider uppercase rounded-full transition-all shadow-sm">
+              <span>Accept recommended price</span>
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Listing Preview & Publish -->
+        <div id="stepView-5" class="hidden space-y-6">
+          <!-- Final Preview Card -->
+          <div class="bg-[#FDF7EE] p-6 rounded-3xl border border-amber-100 flex gap-5 items-center shadow-sm">
+            <div class="w-24 h-24 rounded-2xl overflow-hidden bg-gray-200 flex-shrink-0">
+              <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300&auto=format&fit=crop&q=80" alt="Produce Preview" class="w-full h-full object-cover">
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] font-bold text-[#5292EA] tracking-widest uppercase">LISTING PREVIEW</span>
+              <h3 id="previewTitle" class="text-2xl font-black text-gray-900">Tomatoes</h3>
+              <p id="previewDetails" class="text-xs text-gray-600">Nashik, Maharashtra · Harvested 10 Sep 2026</p>
+              <div class="flex items-center gap-3 text-xs font-bold text-gray-700 pt-1">
+                <span><strong class="text-gray-900">92</strong> AI score</span>
+                <span><strong class="text-gray-900">A</strong> Grade</span>
+                <span><strong class="text-gray-900" id="previewQty">12 kg</strong> available</span>
+              </div>
+              <p class="text-xs font-bold text-[#5292EA] pt-1">₹35/kg <span class="font-normal text-gray-500">fair price</span></p>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-500">
+            AI assessment is an estimate and should be verified where required. Publishing makes your listing visible to verified buyers.
+          </p>
+
+          <div class="flex items-center gap-4 pt-2">
+            <button onclick="publishHarvest()" class="flex items-center gap-2 px-8 py-3.5 bg-[#5292EA] hover:bg-[#3B82F6] text-white font-bold text-xs tracking-wider uppercase rounded-full transition-all shadow-sm">
+              <span>Publish listing</span>
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </button>
+            <button onclick="goToStep(4)" class="text-xs font-bold text-gray-600 hover:text-gray-900 transition-colors uppercase">
+              Edit price
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // Navigation items with clean hover states and proper styles
+    const navItems = [
+      { id: 'dashboard', label: 'DASHBOARD', icon: 'layout-dashboard', href: 'farmerdash.html' },
+      { id: 'add-produce', label: 'ADD PRODUCE', icon: 'plus-circle', href: 'farmadd-produce.html' },
+      { id: 'my-produce', label: 'MY PRODUCE', icon: 'package', href: 'farmmy-produce.html' },
+      { id: 'orders', label: 'ORDERS', icon: 'clipboard-list', href: 'farmorders.html' },
+      { id: 'contracts', label: 'CONTRACTS', icon: 'file-text', href: 'farmcontracts.html' },
+      { id: 'payments', label: 'PAYMENTS', icon: 'credit-card', href: 'farmpayments.html' },
+      { id: 'logistics', label: 'LOGISTICS', icon: 'truck', href: 'farmlogistics.html' },
+      { id: 'profile', label: 'PROFILE', icon: 'user', href: 'farmprofile.html' },
+    ];
+
+    let currentStep = 1;
+
+    // Render Navigation Links
+    function renderSidebar() {
+      const navContainer = document.getElementById('sidebarNav');
+      navContainer.innerHTML = '';
+
+      navItems.forEach(item => {
+        const isActive = item.id === 'add-produce';
+        const link = document.createElement('a');
+        link.href = item.href;
+        link.className = `w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wide transition-all uppercase ${
+          isActive 
+            ? 'bg-[#FDF0C3] text-[#5292EA] shadow-sm border border-amber-200/60' 
+            : 'text-gray-700 hover:bg-emerald-50 hover:text-[#5292EA]'
+        }`;
+        link.innerHTML = `
+          <i data-lucide="${item.icon}" class="w-4 h-4"></i>
+          <span>${item.label}</span>
+        `;
+        navContainer.appendChild(link);
+      });
+
+      lucide.createIcons();
+    }
+
+    // Dynamic Step Switcher
+    function goToStep(step) {
+      currentStep = step;
+      document.getElementById('stepCounter').textContent = `STEP ${step} / 5`;
+
+      // Hide all step views
+      for (let i = 1; i <= 5; i++) {
+        const el = document.getElementById(`stepView-${i}`);
+        if (el) el.classList.add('hidden');
+      }
+
+      // Show targeted step view
+      const target = document.getElementById(`stepView-${step}`);
+      if (target) target.classList.remove('hidden');
+
+      // Update indicators styling
+      for (let i = 1; i <= 5; i++) {
+        const ind = document.getElementById(`stepIndicator-${i}`);
+        const badge = ind.querySelector('.step-badge');
+        const text = ind.querySelector('.step-text');
+
+        if (i < step) {
+          // Completed steps
+          ind.classList.remove('opacity-50');
+          badge.className = 'step-badge w-6 h-6 rounded-full bg-[#5292EA] text-white text-xs font-bold flex items-center justify-center shrink-0';
+          badge.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i>';
+          text.className = 'step-text text-xs font-bold text-gray-800 whitespace-nowrap';
+        } else if (i === step) {
+          // Active step
+          ind.classList.remove('opacity-50');
+          badge.className = 'step-badge w-6 h-6 rounded-full bg-[#5292EA] text-white text-xs font-bold flex items-center justify-center shrink-0';
+          badge.textContent = i;
+          text.className = 'step-text text-xs font-bold text-[#5292EA] whitespace-nowrap';
+        } else {
+          // Upcoming steps
+          ind.classList.add('opacity-50');
+          badge.className = 'step-badge w-6 h-6 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center shrink-0';
+          badge.textContent = i;
+          text.className = 'step-text text-xs font-medium text-gray-500 whitespace-nowrap';
+        }
+      }
+
+      // Simulate AI loading on step 3 transition
+      if (step === 3) {
+        setTimeout(() => {
+          syncData();
+          goToStep(4);
+        }, 1500);
+      }
+
+      lucide.createIcons();
+    }
+
+    // Sync input values into summary screens
+    function syncData() {
+      const name = document.getElementById('inputName').value || 'Tomatoes';
+      const qty = document.getElementById('inputQuantity').value || '12';
+      const unit = document.getElementById('inputUnit').value || 'kg';
+      const loc = document.getElementById('inputLocation').value || 'Nashik, Maharashtra';
+      const date = document.getElementById('inputHarvestDate').value || '10 Sep 2026';
+
+      document.getElementById('summaryName').textContent = name;
+      document.getElementById('previewTitle').textContent = name;
+      document.getElementById('previewDetails').textContent = `${loc} · Harvested ${date}`;
+      document.getElementById('previewQty').textContent = `${qty} ${unit}`;
+    }
+
+    function publishHarvest() {
+      alert("Harvest listed successfully!");
+      window.location.href = "farmerdash.html";
+    }
+
+    // Initialize Page
+    renderSidebar();
+  </script>
+</body>
+</html>

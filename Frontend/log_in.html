@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGRI-CONNECT Sign In</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body id="bodyBg" class="min-h-screen flex items-center justify-center font-sans antialiased transition-colors duration-500 bg-cover bg-center">
+  <!-- Main Card Container -->
+  <main id="cardBg" class="w-full max-w-md p-8 transition-all duration-300 shadow-2xl backdrop-blur-md bg-white/90 rounded-3xl">
+    
+    <!-- Header / Brand Logo -->
+    <header class="flex items-center gap-2 mb-8">
+      <div id="logoBg" class="p-2 rounded-full flex items-center justify-center transition-colors duration-300">
+        <i data-lucide="leaf" id="logoIcon" class="w-5 h-5 transition-colors duration-300"></i>
+      </div>
+      <h1 class="text-xl font-bold tracking-tight text-gray-800">
+        farmer<span id="logoText" class="transition-colors duration-300">-Market</span>
+      </h1>
+    </header>
+
+    <!-- Role Switcher Navigation Bar -->
+    <nav id="navBg" class="p-1.5 rounded-full flex mb-8 transition-colors duration-300 bg-gray-100">
+      <button 
+        type="button" 
+        id="farmerTab" 
+        onclick="switchRole('farmer')"
+        class="flex-1 font-medium py-2.5 px-4 rounded-full flex items-center justify-center gap-2 text-sm transition-all"
+      >
+        <i data-lucide="leaf" class="w-4 h-4"></i>
+        Farmer
+      </button>
+      <button 
+        type="button" 
+        id="buyerTab" 
+        onclick="switchRole('buyer')"
+        class="flex-1 font-medium py-2.5 px-4 rounded-full flex items-center justify-center gap-2 text-sm transition-all"
+      >
+        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+        Buyer
+      </button>
+    </nav>
+
+    <!-- Dynamic Heading -->
+    <section class="mb-6">
+      <h2 id="formTitle" class="text-2xl font-bold text-gray-900 mb-1">Farmer sign in</h2>
+      <p class="text-gray-500 text-sm">Use the pre-filled demo account or register a new one.</p>
+    </section>
+
+    <!-- Sign In Form -->
+    <form class="space-y-5" onsubmit="handleAuthSubmit(event)">
+      <!-- Email Field -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email"
+          value="" 
+          required
+          class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 text-sm transition-all shadow-sm"
+          placeholder="Enter your email"
+        >
+      </div>
+
+      <!-- Password Field -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password"
+          value="" 
+          required
+          class="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 text-sm transition-all shadow-sm"
+          placeholder="Enter your password"
+        >
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        id="submitBtn"
+        class="w-full font-medium py-3.5 px-4 rounded-2xl text-sm transition-colors shadow-sm mt-2 text-white"
+      >
+        Sign in
+      </button>
+    </form>
+
+    <!-- Footer Links -->
+    <footer class="text-center mt-6">
+      <p class="text-sm text-gray-500">
+        New over there? 
+        <a href="farmer-register.html" id="footerLink" class="font-semibold hover:underline transition-colors duration-300">Create an account</a>
+      </p>
+    </footer>
+  </main>
+
+  <!-- Color & Credentials Switcher Engine -->
+  <script>
+    let activeRole = 'farmer';
+
+    const themeConfig = {
+      farmer: {
+        targetPage: 'farmerdash.html',
+        registerPage: 'farmer-register.html',
+        email: '',
+        password: 'farmer@123',
+        bgImage: "url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200&auto=format&fit=crop&q=80')",
+        navBarBg: '#E8F5E9',
+        activeTabBg: '#2E7D32',
+        activeTabText: '#FFFFFF',
+        inactiveTabText: '#2E7D32',
+        primaryAccent: '#2E7D32',
+        logoIconColor: '#FFFFFF',
+      },
+      buyer: {
+        targetPage: 'buyerdash.html',
+        registerPage: 'buyer-register.html',
+        email: '',
+        password: '',
+        bgImage: "url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80')",
+        navBarBg: '#FBE9E7',
+        activeTabBg: '#D84315',
+        activeTabText: '#FFFFFF',
+        inactiveTabText: '#D84315',
+        primaryAccent: '#D84315',
+        logoIconColor: '#FFFFFF',
+      }
+    };
+
+    lucide.createIcons();
+
+    function handleAuthSubmit(event) {
+      event.preventDefault();
+      const destination = themeConfig[activeRole].targetPage;
+      window.location.href = destination;
+    }
+
+    function switchRole(role) {
+      activeRole = role;
+      const theme = themeConfig[role];
+
+      // 0. Update inputs
+      document.getElementById('email').value = theme.email;
+      document.getElementById('password').value = theme.password;
+
+      // 1. Dynamic Background Image Switcher
+      document.getElementById('bodyBg').style.backgroundImage = theme.bgImage;
+
+      // 2. Role Switcher Nav Bar
+      document.getElementById('navBg').style.backgroundColor = theme.navBarBg;
+
+      // 3. Tab Buttons Styling
+      const farmerTab = document.getElementById('farmerTab');
+      const buyerTab = document.getElementById('buyerTab');
+
+      if (role === 'farmer') {
+        farmerTab.style.backgroundColor = theme.activeTabBg;
+        farmerTab.style.color = theme.activeTabText;
+        farmerTab.classList.add('shadow-sm');
+
+        buyerTab.style.backgroundColor = 'transparent';
+        buyerTab.style.color = theme.inactiveTabText;
+        buyerTab.classList.remove('shadow-sm');
+      } else {
+        buyerTab.style.backgroundColor = theme.activeTabBg;
+        buyerTab.style.color = theme.activeTabText;
+        buyerTab.classList.add('shadow-sm');
+
+        farmerTab.style.backgroundColor = 'transparent';
+        farmerTab.style.color = theme.inactiveTabText;
+        farmerTab.classList.remove('shadow-sm');
+      }
+
+      // 4. Form Header Title
+      document.getElementById('formTitle').textContent = role === 'farmer' ? 'Farmer sign in' : 'Buyer sign in';
+
+      // 5. Logo Elements
+      document.getElementById('logoBg').style.backgroundColor = theme.primaryAccent;
+      document.getElementById('logoText').style.color = theme.primaryAccent;
+      
+      const logoIcon = document.getElementById('logoIcon');
+      logoIcon.style.color = theme.logoIconColor;
+      logoIcon.style.stroke = theme.logoIconColor;
+
+      // 6. Form Primary Button & Links
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.style.backgroundColor = theme.primaryAccent;
+
+      const footerLink = document.getElementById('footerLink');
+      footerLink.style.color = theme.primaryAccent;
+      footerLink.href = theme.registerPage;
+    }
+
+    // Set initial theme on page load
+    switchRole('farmer');
+  </script>
+</body>
+</html>

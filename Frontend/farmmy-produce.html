@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGRI-CONNECT - My Produce</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#E8F5E9] via-[#F4F9F4] to-[#E2EAF4] font-sans antialiased text-gray-800 p-4 flex gap-4">
+
+  <!-- Left Navigation Sidebar matching the precise logistics UI/UX -->
+  <aside class="w-72 bg-white/95 backdrop-blur-md border border-gray-100 p-6 flex flex-col justify-between rounded-3xl shadow-sm z-10 shrink-0 min-h-[calc(100vh-2rem)]">
+    <div>
+      <!-- Brand Title Header -->
+      <div class="px-2 py-3 mb-6">
+        <h1 class="text-xl font-bold tracking-widest uppercase flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span> 
+          <span class="text-[#5C94E5]"></span><span class="text-[#3B82F6]">DASHBOARD</span>
+        </h1>
+      </div>
+
+      <!-- Sidebar Navigation -->
+      <nav id="sidebarNav" class="space-y-2">
+        <!-- Rendered dynamically -->
+      </nav>
+    </div>
+
+    <!-- Footer Logout Link -->
+    <div class="pt-4 border-t border-gray-100">
+      <a 
+        id="logoutBtn"
+        href="log_in.html" 
+        class="w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-emerald-700 hover:bg-emerald-50 transition-all uppercase"
+      >
+        <i data-lucide="log-out" class="w-4 h-4"></i>
+        <span>LOG OUT</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Right Main Content Space -->
+  <div class="flex-1 flex flex-col gap-4 min-w-0">
+    
+    <!-- Top Action Bar Card -->
+    <header class="bg-white/95 backdrop-blur-md rounded-2xl px-8 py-5 flex items-center justify-between shadow-sm border border-gray-100">
+      <h1 class="text-sm font-extrabold tracking-wider uppercase">
+         <span class="text-[#1F2937]">Farmers</span> <span class="text-[#659F68]">Market</span>
+      </h1>
+
+      <div class="flex items-center space-x-3">
+        <!-- Live Badge -->
+        <span class="bg-[#FDF0C3] text-[#8D6B00] border border-amber-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+          LIVE
+        </span>
+        <!-- Profile Avatar Pill -->
+        <div class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shadow-sm cursor-pointer hover:bg-emerald-700 transition-colors">
+          <i data-lucide="user" class="w-5 h-5"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Workspace -->
+    <main class="flex-1 bg-white/95 backdrop-blur-md rounded-3xl p-8 flex flex-col shadow-sm border border-gray-100 min-h-[500px]">
+      
+      <!-- Inventory Section Header -->
+      <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold tracking-wider text-[#5C94E5] uppercase">YOUR INVENTORY</span>
+          <h2 class="text-2xl font-black text-gray-900 mt-1">6 active listings</h2>
+          <p class="text-sm text-gray-500 mt-1">Manage and track your farm produce inventory seamlessly.</p>
+        </div>
+
+        <a 
+          href="farmadd-produce.html" 
+          class="bg-[#5C94E5] hover:bg-[#3B82F6] text-white text-xs font-bold px-5 py-3 rounded-full transition-colors flex items-center gap-2 shadow-sm uppercase tracking-wider self-start sm:self-auto"
+        >
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span>Add produce</span>
+        </a>
+      </div>
+
+      <!-- Produce Grid (6 Cards Displayed) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="produceGrid">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // Navigation items with correct connections / href links
+    const navItems = [
+      { id: 'dashboard', label: 'DASHBOARD', icon: 'layout-dashboard', href: 'farmerdash.html' },
+      { id: 'add-produce', label: 'ADD PRODUCE', icon: 'plus-circle', href: 'farmadd-produce.html' },
+      { id: 'my-produce', label: 'MY PRODUCE', icon: 'package', href: 'farmmy-produce.html' },
+      { id: 'orders', label: 'ORDERS', icon: 'clipboard-list', href: 'farmorders.html' },
+      { id: 'contracts', label: 'CONTRACTS', icon: 'file-text', href: 'farmcontracts.html' },
+      { id: 'payments', label: 'PAYMENTS', icon: 'credit-card', href: 'farmpayments.html' },
+      { id: 'logistics', label: 'LOGISTICS', icon: 'truck', href: 'farmlogistics.html' },
+      { id: 'profile', label: 'PROFILE', icon: 'user', href: 'farmprofile.html' },
+    ];
+
+    // Array of 6 Produce Items
+    const produceList = [
+      {
+        id: 1,
+        title: 'Tomatoes',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '92/100',
+        verified: true,
+        price: '₹35',
+        unit: 'kg',
+        available: '100 kg',
+        image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=1'
+      },
+      {
+        id: 2,
+        title: 'Fresh Spinach',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A+',
+        aiScore: '96/100',
+        verified: true,
+        price: '₹22',
+        unit: 'kg',
+        available: '250 kg',
+        image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=2'
+      },
+      {
+        id: 3,
+        title: 'Organic Carrots',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '90/100',
+        verified: true,
+        price: '₹45',
+        unit: 'kg',
+        available: '180 kg',
+        image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b3JnYW5pYyUyMGNhcnJvdHxlbnwwfHwwfHx8MA%3D%3D',
+        detailHref: 'farmproduce-detail.html?id=3'
+      },
+      {
+        id: 4,
+        title: 'Red Onions',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'B+',
+        aiScore: '88/100',
+        verified: true,
+        price: '₹28',
+        unit: 'kg',
+        available: '500 kg',
+        image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=4'
+      },
+      {
+        id: 5,
+        title: 'Green Bell Peppers',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '94/100',
+        verified: true,
+        price: '₹50',
+        unit: 'kg',
+        available: '120 kg',
+        image: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=5'
+      },
+      {
+        id: 6,
+        title: 'Fresh Potatoes',
+        farmer: 'Rajesh Patil',
+        location: 'Nashik',
+        grade: 'A',
+        aiScore: '91/100',
+        verified: true,
+        price: '₹25',
+        unit: 'kg',
+        available: '400 kg',
+        image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=500&auto=format&fit=crop&q=80',
+        detailHref: 'farmproduce-detail.html?id=6'
+      }
+    ];
+
+    // Render Navigation Sidebar with matching theme & pill highlights
+    function renderSidebar() {
+      const navContainer = document.getElementById('sidebarNav');
+      navContainer.innerHTML = '';
+
+      navItems.forEach(item => {
+        const isActive = item.id === 'my-produce';
+        const link = document.createElement('a');
+        link.href = item.href;
+
+        if (isActive) {
+          link.className = "w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider bg-[#FDF0C3] text-[#5C94E5] shadow-sm border border-amber-200/60 uppercase";
+        } else {
+          link.className = "w-full flex items-center gap-3 px-5 py-3.5 rounded-full text-xs font-bold tracking-wider text-gray-700 hover:bg-emerald-50 hover:text-[#5C94E5] transition-all uppercase";
+        }
+
+        link.innerHTML = `
+          <i data-lucide="${item.icon}" class="w-4 h-4"></i>
+          <span>${item.label}</span>
+        `;
+        navContainer.appendChild(link);
+      });
+    }
+
+    // Render Produce Cards Grid with clean neutral styling (avoiding custom text/border highlight colors) and working connections
+    function renderProduceGrid() {
+      const grid = document.getElementById('produceGrid');
+      grid.innerHTML = '';
+
+      produceList.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between hover:border-gray-200 transition-all";
+
+        card.innerHTML = `
+          <div>
+            <!-- Image with Grade Badge overlay -->
+            <div class="relative h-48 w-full overflow-hidden bg-gray-100">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+              <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-xl shadow-sm flex items-center gap-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span class="text-xs font-bold text-gray-800">Grade ${item.grade}</span>
+              </div>
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-5 space-y-3">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 class="text-lg font-bold text-gray-900">${item.title}</h3>
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <p class="text-xs text-gray-500 font-medium">${item.farmer} · ${item.location}</p>
+              </div>
+
+              <!-- AI & Verification Status -->
+              <div class="flex items-center gap-3 text-xs font-semibold text-gray-600">
+                <span>AI Score: ${item.aiScore}</span>
+                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                <span>Verified</span>
+              </div>
+
+              <div class="border-t border-gray-100 pt-3 flex justify-between items-baseline">
+                <div>
+                  <span class="text-xl font-black text-gray-900">${item.price}</span>
+                  <span class="text-xs text-gray-500 font-medium">/ ${item.unit}</span>
+                </div>
+                <span class="text-xs font-semibold text-gray-500">${item.available} available</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button Connected Properly -->
+          <div class="p-5 pt-0">
+            <a href="${item.detailHref}" class="w-full py-2.5 px-4 bg-gray-50 hover:bg-gray-100 border border-gray-200/80 rounded-xl flex items-center justify-center gap-2 text-xs font-bold text-gray-800 transition-colors shadow-sm">
+              <span>View details</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // Initialize Page
+    renderSidebar();
+    renderProduceGrid();
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+-- 1. Enums
+CREATE TYPE user_role AS ENUM ('farmer', 'buyer');
+CREATE TYPE produce_grade AS ENUM ('A+', 'A', 'B+', 'B', 'C');
+CREATE TYPE contract_status AS ENUM ('pending', 'active', 'pending_signature', 'completed', 'declined');
+CREATE TYPE payment_status AS ENUM ('pending', 'paid', 'in_escrow', 'released', 'refunded');
+CREATE TYPE shipment_status AS ENUM ('dispatch_pending', 'driver_assigned', 'in_transit', 'out_for_delivery', 'delivered');
+
+-- 2. Profiles (Extended for Farmer Profile screen)
+CREATE TABLE profiles (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    full_name TEXT NOT NULL,
+    role user_role NOT NULL DEFAULT 'farmer',
+    phone TEXT,
+    farm_name TEXT,
+    farm_address TEXT,
+    land_area TEXT,                   -- e.g. '12 Acres'
+    farming_method TEXT DEFAULT '100% Organic',
+    experience TEXT,                  -- e.g. '14 Years in Commercial Farming'
+    primary_crops TEXT[],             -- e.g. ARRAY['Tomatoes', 'Okra', 'Brinjal', 'Onions']
+    seller_rating NUMERIC(2,1) DEFAULT 4.8,
+    is_fssai_verified BOOLEAN DEFAULT TRUE,
+    is_id_verified BOOLEAN DEFAULT TRUE,
+    is_organic_certified BOOLEAN DEFAULT TRUE,
+    qa_grade produce_grade DEFAULT 'A+',
+    bank_name TEXT DEFAULT 'State Bank of India',
+    bank_account_masked TEXT DEFAULT '•••••••• 4417',
+    bank_ifsc TEXT DEFAULT 'SBIN0001234',
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 3. Produce Listings (With AI Grade & Fair Pricing)
+CREATE TABLE listings (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    farmer_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+    produce_name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    quantity NUMERIC NOT NULL,
+    unit TEXT NOT NULL DEFAULT 'kg',
+    location TEXT NOT NULL,
+    harvest_date DATE NOT NULL,
+    image_url TEXT,
+    ai_score INTEGER CHECK (ai_score BETWEEN 0 AND 100),
+    ai_grade produce_grade DEFAULT 'A',
+    regional_avg_price NUMERIC NOT NULL,
+    quality_adjustment NUMERIC NOT NULL DEFAULT 0,
+    demand_adjustment NUMERIC NOT NULL DEFAULT 0,
+    suggested_fair_price NUMERIC NOT NULL,
+    final_price NUMERIC NOT NULL,
+    is_available BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 4. Digital Contracts
+CREATE TABLE contracts (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    contract_number TEXT UNIQUE NOT NULL,
+    farmer_id UUID NOT NULL REFERENCES profiles(id),
+    buyer_id UUID NOT NULL REFERENCES profiles(id),
+    title TEXT NOT NULL,
+    contract_type TEXT NOT NULL,
+    produce_name TEXT NOT NULL,
+    quantity NUMERIC NOT NULL,
+    unit TEXT NOT NULL DEFAULT 'kg',
+    total_value NUMERIC NOT NULL,
+    duration TEXT,
+    status contract_status NOT NULL DEFAULT 'pending',
+    pdf_url TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 5. Payments & Escrow Ledger
+CREATE TABLE transactions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    farmer_id UUID NOT NULL REFERENCES profiles(id),
+    buyer_id UUID NOT NULL REFERENCES profiles(id),
+    contract_id UUID REFERENCES contracts(id),
+    item_description TEXT NOT NULL,
+    amount NUMERIC NOT NULL,
+    status payment_status NOT NULL DEFAULT 'in_escrow',
+    payout_bank_account TEXT DEFAULT 'Bank Account Ending in 4417',
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 6. Logistics & Tracking Shipments
+CREATE TABLE shipments (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_code TEXT UNIQUE NOT NULL, -- e.g. '#ORD-8941'
+    farmer_id UUID NOT NULL REFERENCES profiles(id),
+    buyer_name TEXT NOT NULL,
+    produce_item TEXT NOT NULL,       -- e.g. 'Tomatoes (200 kg)'
+    destination TEXT NOT NULL,        -- e.g. 'Mumbai Central Market'
+    carrier_info TEXT,                -- e.g. 'Agrispeed Logistics (MH-15-2201)'
+    driver_phone TEXT,
+    pickup_schedule TEXT,             -- e.g. 'Tomorrow, 8:00 AM'
+    est_arrival TEXT,                 -- e.g. 'Today, 4:30 PM'
+    status shipment_status NOT NULL DEFAULT 'dispatch_pending',
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 7. Daily Market Price Ticker
+CREATE TABLE market_prices (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    crop TEXT UNIQUE NOT NULL,
+    market_price NUMERIC NOT NULL,
+    your_price NUMERIC,
+    change_pct NUMERIC DEFAULT 0,
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);

@@ -1,21 +1,4 @@
-Yes. Now that you've shown the **actual GitHub structure** and clarified that the frontend is **HTML5 + Tailwind CSS**, we can make the README much more accurate.
 
-I would **not mention React, Next.js, Node.js/Express, PostgreSQL/MongoDB, etc. as your current stack unless those are actually in the code**. Your repository currently shows:
-
-* `Frontend/` with separate HTML pages for farmer and buyer flows
-* `Backend/Complete Server Code`
-* `Backend/Database Schema & Policies`
-* `Backend/README.md`
-* Root `README.md`
-* `research.md`
-* `.gitattributes`
-* Figma for design
-* Visual Studio Code for implementation
-* HTML5 + Tailwind CSS for the frontend
-
-Here is the **full README in one copy-paste-ready format**.
-
-````markdown
 # 🚀 BitNBuild 2026
 
 > **Hackathon Project Repository**
